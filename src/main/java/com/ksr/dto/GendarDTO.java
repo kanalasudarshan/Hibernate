@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,7 +22,17 @@ public class GendarDTO {
 	private long  gendarId;
 	@Column(name="gendar_type")
 	private String gendar;
-
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="gendarDTO")	
+	private Set<UserDTO> userDTOs=new HashSet<>();
+	
+	
+	
+	public Set<UserDTO> getUserDTOs() {
+		return userDTOs;
+	}
+	public void setUserDTOs(Set<UserDTO> userDTOs) {
+		this.userDTOs = userDTOs;
+	}
 	public long getGendarId() {
 		return gendarId;
 	}

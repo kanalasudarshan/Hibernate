@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,22 +25,39 @@ public class UserDTO {
 	@Column(name="user_id")
 	private long userId;
 	private String userName;	
+	private boolean isActive;
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="userDTO")	
 	private Set<AddressDTO> address=new HashSet<AddressDTO>(); 	
-	@ManyToMany(cascade=CascadeType.ALL)	
-	@JoinTable(name = "j_user_gendar", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "gendar_id") })	
-	private Set<GendarDTO> gendar=new HashSet<>();
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="gendar_id")
+	private GendarDTO gendarDTO;	
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name = "j_user_qualification", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "qualification_id") })
+	private Set<QualificationDTO> qualifications=new HashSet<>();
 	
 	
-	
-	
-	
-	public Set<GendarDTO> getGendar() {
-		return gendar;
+	public Set<QualificationDTO> getQualifications() {
+		return qualifications;
 	}
-	public void setGendar(Set<GendarDTO> gendar) {
-		this.gendar = gendar;
+	public void setQualifications(Set<QualificationDTO> qualifications) {
+		this.qualifications = qualifications;
 	}
+	public GendarDTO getGendarDTO() {
+		return gendarDTO;
+	}
+	public void setGendarDTO(GendarDTO gendarDTO) {
+		this.gendarDTO = gendarDTO;
+	}
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+	public boolean getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+	
 	public Set<AddressDTO> getAddress() {
 		return address;
 	}	
@@ -63,7 +81,7 @@ public class UserDTO {
 	@Override
 	public String toString() {
 		return "UserDTO [userId=" + userId + ", userName=" + userName
-				+ ", address=" + address + ", gendar=" + gendar + "]";
+				+ ", address=" + address + ", gendar=" + gendarDTO + "]";
 	}
 	
 	

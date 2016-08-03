@@ -10,8 +10,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="b_regular_employee")
+
+//SINGLE_TABLE
 //@DiscriminatorValue(value="regularemplyee")  
+
+//JOINED
 //@PrimaryKeyJoinColumn(name="employee_id")  
+
+//TABLE_PER_CLASS
 @AttributeOverrides({
 	@AttributeOverride(name="employeeId",column=@Column(name="employee_id")),
 	@AttributeOverride(name="employeeName",column=@Column(name="employee_name"))

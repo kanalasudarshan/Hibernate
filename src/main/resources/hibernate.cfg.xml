@@ -28,11 +28,11 @@
         <property name="show_sql">true</property>
 
         <!-- Drop and re-create the database schema on startup -->
- 	<!-- 	<property name="hbm2ddl.auto">update</property> -->
+ 		<property name="hbm2ddl.auto">update</property>
         <mapping class="com.ksr.dto.UserDTO"/>
 		<mapping class="com.ksr.dto.AddressDTO"/>
 		<mapping class="com.ksr.dto.GendarDTO"/>
-		
+		<mapping class="com.ksr.dto.QualificationDTO"/>
 		<mapping class="com.ksr.dto.EmployeeDTO"/>
 		<mapping class="com.ksr.dto.RegularEmployeeDTO"/>
 		<mapping class="com.ksr.dto.ContractEmployeeDTO"/>
